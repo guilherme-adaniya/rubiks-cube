@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "./App.css"
+import { Canvas } from "@react-three/fiber"
+import { OrbitControls } from "@react-three/drei"
+import "./index.css"
+import * as THREE from "three"
 
 function App() {
+  const geometry = new THREE.BoxGeometry()
+  const cubeMaterials = [
+    new THREE.MeshBasicMaterial({
+      color: "#b71234",
+      side: THREE.DoubleSide,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: "#ff5800",
+      side: THREE.DoubleSide,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: "#009b48",
+      side: THREE.DoubleSide,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: "#0046ad",
+      side: THREE.DoubleSide,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: "#ffd500",
+      side: THREE.DoubleSide,
+    }),
+    new THREE.MeshBasicMaterial({
+      color: "white",
+      side: THREE.DoubleSide,
+    }),
+  ]
+  const mesh = new THREE.Mesh(geometry, cubeMaterials)
+  const mesh1 = new THREE.Mesh(geometry, cubeMaterials)
+  const mesh2 = new THREE.Mesh(geometry, cubeMaterials)
+  const mesh3 = new THREE.Mesh(geometry, cubeMaterials)
+  const mesh4 = new THREE.Mesh(geometry, cubeMaterials)
+  const mesh5 = new THREE.Mesh(geometry, cubeMaterials)
+  const mesh6 = new THREE.Mesh(geometry, cubeMaterials)
+  const mesh7 = new THREE.Mesh(geometry, cubeMaterials)
+  mesh.rotateOnAxis(new THREE.Vector3(0, 0, 1), 83.25)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Canvas
+      className="canvas"
+      style={{ height: "100vh", backgroundColor: " black" }}
+    >
+      <OrbitControls />
+      <ambientLight intensity={1} />
+      <spotLight position={[10, 15, 10]} angle={0.3} />
+      <group>
+        <primitive object={mesh} position={[0, 0, 0]} rotate={180} />
+        <primitive object={mesh1} position={[1.05, 0, 0]} />
+        <primitive object={mesh2} position={[1.05, 1.05, 0]} />
+        <primitive object={mesh3} position={[0, 1.05, 0]} />
+        <primitive object={mesh4} position={[1.05, 0, 1.05]} />
+        <primitive object={mesh5} position={[0, 0, 1.05]} />
+        <primitive object={mesh6} position={[0, 1.05, 1.05]} />
+        <primitive object={mesh7} position={[1.05, 1.05, 1.05]} />
+      </group>
+    </Canvas>
+  )
 }
 
-export default App;
+export default App
