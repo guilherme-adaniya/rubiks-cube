@@ -44,19 +44,10 @@ function App() {
   const mesh7 = new THREE.Mesh(geometry, cubeMaterials) //ftr
   const { R, Rprime, L, Lprime, U, Uprime, F, Fprime, B, Bprime, D, Dprime } =
     useCubeMovements(mesh, mesh1, mesh2, mesh3, mesh4, mesh5, mesh6, mesh7)
-
-  const FACE_SIZE = 1.575
-  const DIRECTION = {
-    UP: new THREE.Vector3(-1, 0, 0),
-    DOWN: new THREE.Vector3(1, 0, 0),
-    LEFT: new THREE.Vector3(0, -1, 0),
-    RIGHT: new THREE.Vector3(0, 1, 0),
-  }
-
-  // mesh.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
-  // mesh3.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
-  // mesh5.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
-  // mesh6.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  // const group = new THREE.Group()
+  // mesh.position.set(0.5, 0.5, 0)
+  // group.add(mesh)
+  // let rotation = 2
   return (
     <>
       <button onClick={R}> R </button>
@@ -71,6 +62,13 @@ function App() {
       <button onClick={Bprime}> B' </button>
       <button onClick={D}> D </button>
       <button onClick={Dprime}> D' </button>
+      {/* <button
+        onClick={() => {
+          group.rotation.z = Math.PI / rotation
+        }}
+      >
+        rotate
+      </button> */}
       <Canvas
         className="canvas"
         style={{ height: "100vh", backgroundColor: " black" }}
@@ -78,8 +76,9 @@ function App() {
         <OrbitControls />
         <ambientLight intensity={1} />
         <spotLight position={[10, 15, 10]} angle={0.3} />
+        {/* <primitive object={group} position={[-0.5, -0.5, 0]} /> */}
         <group>
-          <primitive object={mesh} position={[0, 0, 0]} />
+          <primitive object={mesh} position={[1, 1, 0]} />
           <primitive object={mesh1} position={[1.05, 0, 0]} />
           <primitive object={mesh2} position={[1.05, 1.05, 0]} />
           <primitive object={mesh3} position={[0, 1.05, 0]} />

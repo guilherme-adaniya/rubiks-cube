@@ -1,46 +1,47 @@
 //[vertical atrás] [vertical frente] [horizontal topo] [horizontal baixo]
 let rigthSideLayer = [
-  [mesh1, mesh2],
-  [mesh4, mesh7],
-  [mesh2, mesh7],
-  [mesh1, mesh4],
+  [BBR, BTR],
+  [FBR, FTR],
+  [BTR, FTR],
+  [BBR, FBR],
 ]
 
 //[vertical esquerda atrás] [vertical esquerda frente] [horizontal topo] [horizontal baixo]
 let leftSideLayer = [
-  [mesh, mesh3],
-  [mesh5, mesh6],
-  [mesh3, mesh6],
-  [mesh, mesh5],
+  [BBL, BTL],
+  [FBL, FTL],
+  [BTL, FTL],
+  [BBL, FBL],
 ]
 
 //[vertical esquerda], [vertical direita], [hori cima], [hori baixo]
 let frontLayer = [
-  [mesh5, mesh6],
-  [mesh4, mesh7],
-  [mesh6, mesh7],
-  [mesh4, mesh5],
+  [FBL, FTL],
+  [FBR, FTR],
+  [FTL, FTR],
+  [FBR, FBL],
 ]
 
 //[vertical esquerda], [vertical direita], [hori cima], [hori baixo]
 let backLayer = [
-  [mesh, mesh3],
-  [mesh1, mesh2],
-  [mesh2, mesh3],
-  [mesh, mesh1],
+  [BBL, BTL],
+  [BBR, BTR],
+  [BTR, BTL],
+  [BBL, BBR],
 ]
 
+//[vertical esquerda], [vertical direita], [hori frente], [hori back]
 let bottomLayer = [
-  [mesh, mesh5],
-  [mesh1, mesh4],
-  [mesh4, mesh5],
-  [mesh, mesh1],
+  [BBL, FBL],
+  [BBR, FBR],
+  [FBR, FBL],
+  [BBL, BBR],
 ]
 
 //[vertical esquerda], [vertical direita], [hori frente], [hori back]
 let upperLayer = [
-  [mesh3, mesh6],
-  [mesh2, mesh7],
-  [mesh6, mesh7],
-  [mesh2, mesh3],
+  [BTL, FTL],
+  [BTR, FTR],
+  [FTL, FTR],
+  [BTR, BTL],
 ]
