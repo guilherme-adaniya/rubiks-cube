@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import { Canvas } from "@react-three/fiber"
+import { Canvas, Vector3 } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 import "./index.css"
 import * as THREE from "three"
@@ -33,6 +33,7 @@ function App() {
       side: THREE.DoubleSide,
     }),
   ]
+
   const mesh = new THREE.Mesh(geometry, cubeMaterials)
   const mesh1 = new THREE.Mesh(geometry, cubeMaterials)
   const mesh2 = new THREE.Mesh(geometry, cubeMaterials)
@@ -41,7 +42,21 @@ function App() {
   const mesh5 = new THREE.Mesh(geometry, cubeMaterials)
   const mesh6 = new THREE.Mesh(geometry, cubeMaterials)
   const mesh7 = new THREE.Mesh(geometry, cubeMaterials)
-  mesh.rotateOnAxis(new THREE.Vector3(0, 0, 1), 83.25)
+
+
+  const FACE_SIZE = 1.575
+  const DIRECTION = {
+    UP: new THREE.Vector3(-1, 0, 0),
+    DOWN: new THREE.Vector3(1, 0, 0),
+    LEFT: new THREE.Vector3(0, -1, 0),
+    RIGHT: new THREE.Vector3(0, 1, 0),
+  }
+
+  mesh.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  mesh3.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  mesh5.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  mesh6.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+
   return (
     <Canvas
       className="canvas"
