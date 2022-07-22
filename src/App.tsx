@@ -44,10 +44,10 @@ function App() {
   const mesh7 = new THREE.Mesh(geometry, cubeMaterials) //ftr
   const { R, Rprime, L, Lprime, U, Uprime, F, Fprime, B, Bprime, D, Dprime } =
     useCubeMovements(mesh, mesh1, mesh2, mesh3, mesh4, mesh5, mesh6, mesh7)
-  // const group = new THREE.Group()
-  // mesh.position.set(0.5, 0.5, 0)
-  // group.add(mesh)
-  // let rotation = 2
+  const group = new THREE.Group()
+  mesh.position.set(0.5, 0.5, 0)
+  group.add(mesh)
+  let rotation = 2
   return (
     <>
       <button onClick={R}> R </button>
@@ -62,13 +62,13 @@ function App() {
       <button onClick={Bprime}> B' </button>
       <button onClick={D}> D </button>
       <button onClick={Dprime}> D' </button>
-      {/* <button
+      <button
         onClick={() => {
-          group.rotation.z = Math.PI / rotation
+          group.rotateZ(Math.PI / rotation)
         }}
       >
         rotate
-      </button> */}
+      </button>
       <Canvas
         className="canvas"
         style={{ height: "100vh", backgroundColor: " black" }}
@@ -76,8 +76,10 @@ function App() {
         <OrbitControls />
         <ambientLight intensity={1} />
         <spotLight position={[10, 15, 10]} angle={0.3} />
-        {/* <primitive object={group} position={[-0.5, -0.5, 0]} /> */}
         <group>
+          <primitive object={group} position={[-0.5, -0.5, 0]} />
+        </group>
+        {/* <group>
           <primitive object={mesh} position={[1, 1, 0]} />
           <primitive object={mesh1} position={[1.05, 0, 0]} />
           <primitive object={mesh2} position={[1.05, 1.05, 0]} />
@@ -86,7 +88,7 @@ function App() {
           <primitive object={mesh5} position={[0, 0, 1.05]} />
           <primitive object={mesh6} position={[0, 1.05, 1.05]} />
           <primitive object={mesh7} position={[1.05, 1.05, 1.05]} />
-        </group>
+        </group> */}
       </Canvas>
     </>
   )
