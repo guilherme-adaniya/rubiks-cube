@@ -53,10 +53,10 @@ function App() {
     RIGHT: new THREE.Vector3(0, 1, 0),
   }
 
-  mesh.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
-  mesh3.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
-  mesh5.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
-  mesh6.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  // mesh.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  // mesh3.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  // mesh5.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  // mesh6.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
   return (
     <>
       <button onClick={R}> R </button>

@@ -1,4 +1,5 @@
 import { Mesh, BoxGeometry, MeshBasicMaterial } from "three"
+import * as THREE from "three"
 
 export const useCubeMovements = (
   mesh: Mesh<BoxGeometry, MeshBasicMaterial[]>,
@@ -10,6 +11,13 @@ export const useCubeMovements = (
   mesh6: Mesh<BoxGeometry, MeshBasicMaterial[]>,
   mesh7: Mesh<BoxGeometry, MeshBasicMaterial[]>
 ) => {
+  const FACE_SIZE = 1.575
+  const DIRECTION = {
+    UP: new THREE.Vector3(-1, 0, 0),
+    DOWN: new THREE.Vector3(1, 0, 0),
+    LEFT: new THREE.Vector3(0, -1, 0),
+    RIGHT: new THREE.Vector3(0, 1, 0),
+  }
   //[vertical atrás] [vertical frente] [horizontal topo] [horizontal baixo]
   let rigthSideLayer = [
     [mesh1, mesh2],
@@ -17,15 +25,8 @@ export const useCubeMovements = (
     [mesh2, mesh7],
     [mesh1, mesh4],
   ]
-  //[vertical esquerda], [vertical direita], [hori cima], [hori baixo]
-  let backLayer = [
-    [mesh, mesh3],
-    [mesh1, mesh2],
-    [mesh2, mesh3],
-    [mesh, mesh1],
-  ]
   const R = () => {
-    const newRightSideLayer = [
+    const newRigthSideLayer = [
       [rigthSideLayer[0][1], rigthSideLayer[1][1]],
       [rigthSideLayer[0][0], rigthSideLayer[1][0]],
       [rigthSideLayer[1][1], rigthSideLayer[1][0]],
@@ -33,15 +34,38 @@ export const useCubeMovements = (
     ]
     const newBackSide = [
       backLayer[0],
-      [rigthSideLayer[0][1], rigthSideLayer[1][1]],
-      [],
-      [],
+      [rigthSideLayer[1][1], rigthSideLayer[1][0]],
+      [backLayer[2][1], rigthSideLayer[1][1]],
+      [backLayer[3][0], rigthSideLayer[1][0]],
     ]
-    const newFrontSide = []
-    const newUpperLayer = []
-    const newDownLayer = []
+    const newFrontSide = [
+      frontLayer[0],
+      [rigthSideLayer[0][0], rigthSideLayer[1][0]],
+      [frontLayer[2][0], rigthSideLayer[1][0]],
+      [rigthSideLayer[0][0], frontLayer[3][1]],
+    ]
+    const newUpperLayer = [
+      upperLayer[0],
+      [rigthSideLayer[1][1], rigthSideLayer[1][0]],
+      [rigthSideLayer[2][0], rigthSideLayer[1][0]],
+      [rigthSideLayer[1][1], upperLayer[3][1]],
+    ]
+    const newDownLayer = [
+      bottomLayer[0],
+      [rigthSideLayer[0][1], rigthSideLayer[1][1]],
+      [bottomLayer[2][1], rigthSideLayer[1][1]],
+      [bottomLayer[3][0], rigthSideLayer[1][0]],
+    ]
     //Rotação
-    rigthSideLayer = newRightSideLayer
+    rigthSideLayer[0][0].rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+    rigthSideLayer[0][1].rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+    rigthSideLayer[1][1].rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+    rigthSideLayer[1][0].rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+    rigthSideLayer = newRigthSideLayer
+    backLayer = newBackSide
+    frontLayer = newFrontSide
+    upperLayer = newUpperLayer
+    bottomLayer = newDownLayer
   }
   const Rprime = () => {
     const newRightSideLayer = [
@@ -50,8 +74,24 @@ export const useCubeMovements = (
       [rigthSideLayer[0][1], rigthSideLayer[1][1]],
       [rigthSideLayer[1][0], rigthSideLayer[1][1]],
     ]
-    //rotação
+    const newBackSide = [
+      backLayer[0],
+      [rigthSideLayer[1][0], rigthSideLayer[0][0]],
+      [],
+    ]
+    const newFrontSide = [frontLayer[0]]
+    const newUpperLayer = [upperLayer[0]]
+    const newDownLayer = [bottomLayer[0]]
+    //Rotação
+    rigthSideLayer[0][0].rotateOnWorldAxis(DIRECTION.DOWN, FACE_SIZE)
+    rigthSideLayer[0][1].rotateOnWorldAxis(DIRECTION.DOWN, FACE_SIZE)
+    rigthSideLayer[1][1].rotateOnWorldAxis(DIRECTION.DOWN, FACE_SIZE)
+    rigthSideLayer[1][0].rotateOnWorldAxis(DIRECTION.DOWN, FACE_SIZE)
     rigthSideLayer = newRightSideLayer
+    backLayer = newBackSide
+    frontLayer = newFrontSide
+    upperLayer = newUpperLayer
+    bottomLayer = newDownLayer
   }
 
   //[vertical esquerda atrás] [vertical esquerda frente] [horizontal topo] [horizontal baixo]

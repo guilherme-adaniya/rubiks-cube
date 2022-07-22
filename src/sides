@@ -1,0 +1,46 @@
+//[vertical atrás] [vertical frente] [horizontal topo] [horizontal baixo]
+let rigthSideLayer = [
+  [mesh1, mesh2],
+  [mesh4, mesh7],
+  [mesh2, mesh7],
+  [mesh1, mesh4],
+]
+
+//[vertical esquerda atrás] [vertical esquerda frente] [horizontal topo] [horizontal baixo]
+let leftSideLayer = [
+  [mesh, mesh3],
+  [mesh5, mesh6],
+  [mesh3, mesh6],
+  [mesh, mesh5],
+]
+
+//[vertical esquerda], [vertical direita], [hori cima], [hori baixo]
+let frontLayer = [
+  [mesh5, mesh6],
+  [mesh4, mesh7],
+  [mesh6, mesh7],
+  [mesh4, mesh5],
+]
+
+//[vertical esquerda], [vertical direita], [hori cima], [hori baixo]
+let backLayer = [
+  [mesh, mesh3],
+  [mesh1, mesh2],
+  [mesh2, mesh3],
+  [mesh, mesh1],
+]
+
+let bottomLayer = [
+  [mesh, mesh5],
+  [mesh1, mesh4],
+  [mesh4, mesh5],
+  [mesh, mesh1],
+]
+
+//[vertical esquerda], [vertical direita], [hori frente], [hori back]
+let upperLayer = [
+  [mesh3, mesh6],
+  [mesh2, mesh7],
+  [mesh6, mesh7],
+  [mesh2, mesh3],
+]
