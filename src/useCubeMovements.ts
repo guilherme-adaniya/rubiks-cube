@@ -1,15 +1,16 @@
 import { Mesh, BoxGeometry, MeshBasicMaterial } from "three"
 import * as THREE from "three"
 
+// 1 letra = back/front 2letra = Bottom/Top 3letra = Left/Rigth
 export const useCubeMovements = (
-  mesh: Mesh<BoxGeometry, MeshBasicMaterial[]>,
-  mesh1: Mesh<BoxGeometry, MeshBasicMaterial[]>,
-  mesh2: Mesh<BoxGeometry, MeshBasicMaterial[]>,
-  mesh3: Mesh<BoxGeometry, MeshBasicMaterial[]>,
-  mesh4: Mesh<BoxGeometry, MeshBasicMaterial[]>,
-  mesh5: Mesh<BoxGeometry, MeshBasicMaterial[]>,
-  mesh6: Mesh<BoxGeometry, MeshBasicMaterial[]>,
-  mesh7: Mesh<BoxGeometry, MeshBasicMaterial[]>
+  BBL: Mesh<BoxGeometry, MeshBasicMaterial[]>,
+  BBR: Mesh<BoxGeometry, MeshBasicMaterial[]>,
+  BTR: Mesh<BoxGeometry, MeshBasicMaterial[]>,
+  BTL: Mesh<BoxGeometry, MeshBasicMaterial[]>,
+  FBR: Mesh<BoxGeometry, MeshBasicMaterial[]>,
+  FBL: Mesh<BoxGeometry, MeshBasicMaterial[]>,
+  FTL: Mesh<BoxGeometry, MeshBasicMaterial[]>,
+  FTR: Mesh<BoxGeometry, MeshBasicMaterial[]>
 ) => {
   const FACE_SIZE = 1.575
   const DIRECTION = {
@@ -20,10 +21,10 @@ export const useCubeMovements = (
   }
   //[vertical atrás] [vertical frente] [horizontal topo] [horizontal baixo]
   let rigthSideLayer = [
-    [mesh1, mesh2],
-    [mesh4, mesh7],
-    [mesh2, mesh7],
-    [mesh1, mesh4],
+    [BBR, BTR],
+    [FBR, FTR],
+    [BTR, FTR],
+    [BBR, FBR],
   ]
   const R = () => {
     const newRigthSideLayer = [
@@ -96,10 +97,10 @@ export const useCubeMovements = (
 
   //[vertical esquerda atrás] [vertical esquerda frente] [horizontal topo] [horizontal baixo]
   let leftSideLayer = [
-    [mesh, mesh3],
-    [mesh5, mesh6],
-    [mesh3, mesh6],
-    [mesh, mesh5],
+    [BBL, BTL],
+    [FBL, FTL],
+    [BTL, FTL],
+    [BBL, FBL],
   ]
 
   const L = () => {
@@ -125,38 +126,38 @@ export const useCubeMovements = (
 
   //[vertical esquerda], [vertical direita], [hori cima], [hori baixo]
   let frontLayer = [
-    [mesh5, mesh6],
-    [mesh4, mesh7],
-    [mesh6, mesh7],
-    [mesh4, mesh5],
+    [FBL, FTL],
+    [FBR, FTR],
+    [FTL, FTR],
+    [FBR, FBL],
   ]
   const F = () => {}
   const Fprime = () => {}
 
   //[vertical esquerda], [vertical direita], [hori cima], [hori baixo]
   let backLayer = [
-    [mesh, mesh3],
-    [mesh1, mesh2],
-    [mesh2, mesh3],
-    [mesh, mesh1],
+    [BBL, BTL],
+    [BBR, BTR],
+    [BTR, BTL],
+    [BBL, BBR],
   ]
   const B = () => {}
   const Bprime = () => {}
   //[vertical esquerda], [vertical direita], [hori frente], [hori back]
   let bottomLayer = [
-    [mesh, mesh5],
-    [mesh1, mesh4],
-    [mesh4, mesh5],
-    [mesh, mesh1],
+    [BBL, FBL],
+    [BBR, FBR],
+    [FBR, FBL],
+    [BBL, BBR],
   ]
   const D = () => {}
   const Dprime = () => {}
   //[vertical esquerda], [vertical direita], [hori frente], [hori back]
   let upperLayer = [
-    [mesh3, mesh6],
-    [mesh2, mesh7],
-    [mesh6, mesh7],
-    [mesh2, mesh3],
+    [BTL, FTL],
+    [BTR, FTR],
+    [FTL, FTR],
+    [BTR, BTL],
   ]
 
   const U = () => {
