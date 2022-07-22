@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import { Canvas } from "@react-three/fiber"
+import { Canvas, Vector3 } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 import "./index.css"
 import * as THREE from "three"
@@ -45,6 +45,18 @@ function App() {
   const { R, Rprime, L, Lprime, U, Uprime, F, Fprime, B, Bprime, D, Dprime } =
     useCubeMovements(mesh, mesh1, mesh2, mesh3, mesh4, mesh5, mesh6, mesh7)
 
+  const FACE_SIZE = 1.575
+  const DIRECTION = {
+    UP: new THREE.Vector3(-1, 0, 0),
+    DOWN: new THREE.Vector3(1, 0, 0),
+    LEFT: new THREE.Vector3(0, -1, 0),
+    RIGHT: new THREE.Vector3(0, 1, 0),
+  }
+
+  mesh.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  mesh3.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  mesh5.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
+  mesh6.rotateOnWorldAxis(DIRECTION.UP, FACE_SIZE)
   return (
     <>
       <button onClick={R}> R </button>
